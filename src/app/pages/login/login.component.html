@@ -1,0 +1,95 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiIGZpbGw9IiM2NjYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
+    
+    <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl w-full max-w-md relative z-10">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">تسجيل الدخول إلى حسابك</h2>
+      @if(message !== ""){
+        <div class="mb-4 p-3 rounded-lg bg-red-100 border-r-4 border-red-500 text-red-700">
+          <span>{{message}}</span>
+        </div>
+      }
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4 mb-6" dir="rtl">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1 text-right">البريد الإلكتروني</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
+            [class.border-red-500]="email?.invalid && email?.touched"
+            [class.border-gray-300]="!email?.invalid || !email?.touched"
+            placeholder="أدخل بريدك الإلكتروني"
+            dir="rtl"
+          />
+          @if(email?.invalid && email?.touched){
+            <div class="mt-1 text-sm text-red-600">
+              @if(email?.errors?.['required']){
+                <p>البريد الإلكتروني مطلوب</p>
+              }
+              @if(email?.errors?.['email']){
+                <p>يرجى إدخال بريد إلكتروني صحيح</p>
+              }
+            </div>
+          }
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1 text-right">كلمة المرور</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
+            [class.border-red-500]="password?.invalid && password?.touched"
+            [class.border-gray-300]="!password?.invalid || !password?.touched"
+            placeholder="أدخل كلمة المرور"
+            dir="rtl"
+          />
+          @if(password?.invalid && password?.touched){
+            <div class="mt-1 text-sm text-red-600">
+              @if(password?.errors?.['required']){
+                <p>كلمة المرور مطلوبة</p>
+              }
+              @if(password?.errors?.['minlength']){
+                <p>يجب أن تكون كلمة المرور 6 أحرف على الأقل</p>
+              }
+            </div>
+          }
+        </div>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200"
+          [class.opacity-50]="loginForm.invalid"
+          [class.cursor-not-allowed]="loginForm.invalid"
+          [class.hover:bg-blue-700]="!loginForm.invalid"
+        >
+          تسجيل الدخول
+        </button>
+      </form>
+
+      <div class="relative my-6">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-2 bg-white text-gray-500">أو المتابعة باستخدام</span>
+        </div>
+      </div>
+      
+      <a
+        href="{{url}}"
+        class="no-underline w-full flex items-center justify-center space-x-3 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200"
+        dir="rtl"
+      >
+        <span class="text-sm font-medium text-gray-700">تسجيل الدخول باستخدام جوجل</span>
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" style="margin-right: 10px;" alt="شعار جوجل" />
+      </a>
+  
+      <div class="mt-6 text-center text-sm text-gray-500">
+        ليس لديك حساب؟ <a routerLink="/register" class="text-blue-600 hover:underline cursor-pointer">إنشاء حساب</a>
+      </div>
+    </div>
+  </div>
+
+  
