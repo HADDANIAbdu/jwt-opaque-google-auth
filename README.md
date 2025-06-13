@@ -1,27 +1,91 @@
-# LegalApp
+# Legal App - Next.js Version
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+This is a Next.js version of the legal document management application, featuring:
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Authentication**: Login/Register with email/password and Google OAuth
+- **Dashboard**: View and manage legal documents
+- **Profile Management**: Update user profile and photo upload
+- **Responsive Design**: Mobile-first design with Tailwind CSS
+- **Arabic RTL Support**: Full right-to-left text direction support
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **Axios**: HTTP client for API requests
+- **js-cookie**: Cookie management
 
-## Build
+## Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Install dependencies:
+```bash
+npm install
+```
 
-## Running unit tests
+2. Run the development server:
+```bash
+npm run dev
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Running end-to-end tests
+## Project Structure
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+├── app/                    # Next.js App Router pages
+│   ├── dashboard/         # Dashboard page
+│   ├── login/            # Login page
+│   ├── profile/          # Profile page
+│   ├── register/         # Registration page
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page
+├── components/           # Reusable components
+│   └── Header.tsx       # Navigation header
+├── lib/                 # Utility libraries
+│   └── auth-service.ts  # Authentication service
+├── types/               # TypeScript type definitions
+│   └── index.ts
+└── public/              # Static assets
+```
 
-## Further help
+## API Integration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The app connects to a backend API running on `http://localhost:8080/api` with the following endpoints:
+
+- `POST /auth/login` - User login
+- `POST /auth/register` - User registration
+- `GET /auth/url` - Google OAuth URL
+- `GET /auth/callback` - OAuth callback
+- `GET /profile` - User profile
+- `GET /documents` - User documents
+- `POST /add-photo` - Upload profile photo
+
+## Environment Setup
+
+Make sure your backend API is running on port 8080, or update the `API_URL` in `lib/auth-service.ts` to match your backend URL.
+
+## Features Comparison with Angular Version
+
+This Next.js version maintains feature parity with the original Angular application:
+
+✅ User authentication (email/password + Google OAuth)
+✅ Dashboard with document display
+✅ Profile management with photo upload
+✅ Responsive design with Arabic RTL support
+✅ Form validation and error handling
+✅ Local storage for user data persistence
+
+## Build and Deploy
+
+To build for production:
+
+```bash
+npm run build
+npm start
+```
+
+The application will be optimized and ready for deployment.
